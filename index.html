@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>The Attack</title>
+	<style>
+		body {
+			margin: 0;
+			background: #000000;
+		}
+	</style>
+
+	<script src="lib/phaser.js"></script>
+	<script src="lib/jquery-2.1.3.min.js"></script>
+
+	<script src="src/Boot.js"></script>
+	<script src="src/Preloader.js"></script>
+	<script src="src/Splash.js"></script>
+	<script src="src/MainMenu.js"></script>
+	<script src="src/Game.js"></script>
+	<script src="src/GameOver.js"></script>
+	<script src="src/Credits.js"></script>
+	<script src="src/FrontDoor.js"></script>
+	<script src="src/PauseScreen.js"></script>
+</head>
+
+<body>
+
+	<script>
+		(function () {
+			var game = new Phaser.Game(800, 600, Phaser.AUTO, 'The Attack');
+			game.state.add('Boot', AttackGame.Boot);
+			game.state.add('Preloader', AttackGame.Preloader);
+			game.state.add('Splash', AttackGame.Splash);
+			game.state.add('MainMenu', AttackGame.MainMenu);
+			game.state.add('GameOver', AttackGame.GameOver);
+			game.state.add('Game', AttackGame.Game);
+			game.state.add('Credits', AttackGame.Credits);
+			game.state.start('Boot');
+		})();
+	</script>
+</body>
+
+</html>
