@@ -10,7 +10,7 @@ AttackGame.MainMenu.prototype = {
 
 		// add the button that will start the game
 		this.startButton = this.add.button(AttackGame.WIDTH / 2,
-			AttackGame.HEIGHT - 130,
+			AttackGame.HEIGHT - 100,
 			'startButton',
 			this.startGame,
 			this, 1, 0, 2);

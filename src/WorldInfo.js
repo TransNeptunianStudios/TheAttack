@@ -1,5 +1,6 @@
 WorldInfo = function (game) {
-	this.time = new Date(2015, 3, 12, 3, 23, 0);
+	this.attackStart = new Date();
+	this.time = new Date(this.attackStart.getTime());
 
 	// just for ideas
 	this.typeOfAttack = "ZOMBIES";
@@ -10,4 +11,8 @@ WorldInfo.prototype.update = function (dt) {
 	var multi = 10000; // time multiplier
 
 	this.time.setTime(this.time.getTime() + (dt * multi));
+}
+
+WorldInfo.prototype.timeSinceAttack = function () {
+	return new Date(Math.abs(this.time - this.attackStart));
 }

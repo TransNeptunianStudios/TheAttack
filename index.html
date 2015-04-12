@@ -22,10 +22,11 @@
 	<script src="src/GameOver.js"></script>
 	<script src="src/Credits.js"></script>
 	<script src="src/FrontDoor.js"></script>
-	<script src="src/PauseScreen.js"></script>
+	<script src="src/PauseMenu.js"></script>
 	<script src="src/WorldInfo.js"></script>
 	<script src="src/PlayerInfo.js"></script>
 	<script src="src/Clock.js"></script>
+	<script src="src/PlayerStatusView.js"></script>
 
 </head>
 
@@ -33,7 +34,7 @@
 
 	<script>
 		(function () {
-			var game = new Phaser.Game(800, 600, Phaser.AUTO, 'The Attack');
+			var game = new Phaser.Game(640, 360, Phaser.AUTO, 'The Attack');
 			game.state.add('Boot', AttackGame.Boot);
 			game.state.add('Preloader', AttackGame.Preloader);
 			game.state.add('Splash', AttackGame.Splash);

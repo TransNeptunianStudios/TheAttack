@@ -1,6 +1,6 @@
 AttackGame.Preloader = function (game) {
-	AttackGame.WIDTH = 800;
-	AttackGame.HEIGHT = 600;
+	AttackGame.WIDTH = 640;
+	AttackGame.HEIGHT = 360;
 };
 AttackGame.Preloader.prototype = {
 	preload: function () {
@@ -25,7 +25,7 @@ AttackGame.Preloader.prototype = {
 		this.load.image('clock_m', 'assets/Clock_m.png');
 
 		// load spritesheets		
-		this.load.spritesheet('startButton', 'assets/StartButton.png', 200, 100);
+		this.load.spritesheet('startButton', 'assets/StartButton.png', 150, 75);
 
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg

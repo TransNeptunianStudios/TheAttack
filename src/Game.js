@@ -10,8 +10,8 @@ AttackGame.Game.prototype = {
 		this.playerInfo = new PlayerInfo(this.game, this.worldInfo);
 
 		// Pause menu
-		this.pauseScreen = new PauseScreen(this.game);
-		this.game.add.existing(this.pauseScreen);
+		this.pauseMenu = new PauseMenu(this.game);
+		this.game.add.existing(this.pauseMenu);
 
 		// Create room
 		this.add.sprite(0, 0, 'emptyRoom');
@@ -35,17 +35,16 @@ AttackGame.Game.prototype = {
 
 			this.playerInfo.update();
 		}
-
 	},
 	togglePause: function () {
 		this.pause = !this.pause;
 		if (this.pause) {
-			this.pauseScreen.show(this.playerInfo, this.worldInfo);
-			this.game.world.bringToTop(this.pauseScreen);
+			this.pauseMenu.show(this.playerInfo, this.worldInfo);
+			this.game.world.bringToTop(this.pauseMenu);
 		} else
-			this.pauseScreen.hide();
+			this.pauseMenu.hide();
 	},
 	gameOver: function () {
-		this.state.start('GameOver');
+		this.state.start('GameOver', true, false, this.worldInfo);
 	}
 };
