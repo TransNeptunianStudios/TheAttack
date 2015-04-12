@@ -6,6 +6,9 @@ AttackGame.Game.prototype = {
 		// Create world info
 		this.worldInfo = new WorldInfo(this.game);
 
+		// Create player info
+		this.playerInfo = new PlayerInfo(this.game, this.worldInfo);
+
 		// Pause menu
 		this.pauseScreen = new PauseScreen(this.game);
 		this.game.add.existing(this.pauseScreen);
@@ -19,15 +22,28 @@ AttackGame.Game.prototype = {
 		this.clock = new Clock(this.game, this.worldInfo.time);
 		this.game.add.existing(this.clock);
 
-		this.game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(this.toggleStatus, this);
+		this.game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(this.togglePause, this);
+		this.pause = false;
 	},
 	update: function () {
-		this.worldInfo.update(this.game.time.elapsed);
-		this.clock.setTime(this.worldInfo.time);
+		if (this.playerInfo.isGameOver())
+			this.gameOver();
+
+		if (!this.pause) {
+			this.worldInfo.update(this.game.time.elapsed);
+			this.clock.setTime(this.worldInfo.time);
+
+			this.playerInfo.update();
+		}
+
 	},
-	toggleStatus: function () {
+	togglePause: function () {
 		this.pause = !this.pause;
-		this.pauseScreen.visible = this.pause;
+		if (this.pause) {
+			this.pauseScreen.show(this.playerInfo, this.worldInfo);
+			this.game.world.bringToTop(this.pauseScreen);
+		} else
+			this.pauseScreen.hide();
 	},
 	gameOver: function () {
 		this.state.start('GameOver');

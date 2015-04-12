@@ -7,7 +7,7 @@ WorldInfo = function (game) {
 }
 
 WorldInfo.prototype.update = function (dt) {
-	var multi = 100; // time multiplier
+	var multi = 10000; // time multiplier
 
 	this.time.setTime(this.time.getTime() + (dt * multi));
 }

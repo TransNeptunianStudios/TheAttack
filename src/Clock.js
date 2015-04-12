@@ -20,8 +20,6 @@ Clock.prototype = Object.create(Phaser.Group.prototype);
 Clock.prototype.constructor = Clock;
 
 Clock.prototype.setTime = function (time) {
-	console.log(time);
-
 	var hour = parseFloat(time.getHours() % 12) / 12.0;
 	this.hourHand.angle = hour * 360; // 7 in the morning
 
