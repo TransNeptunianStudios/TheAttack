@@ -16,6 +16,14 @@ AttackGame.MainMenu.prototype = {
 			this, 1, 0, 2);
 		this.startButton.anchor.setTo(0.5);
 
+		var text = "Version: 0.1 Alfa";
+		var style = {
+			font: "20px Arial",
+			fill: "#000000",
+			align: "center"
+		};
+		var version = this.game.add.text(5, this.game.height - 30, text, style);
+
 	},
 	startGame: function () {
 		// start the Game state
