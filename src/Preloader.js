@@ -20,6 +20,10 @@ AttackGame.Preloader.prototype = {
 		this.load.image('door', 'assets/Door.png');
 		this.load.image('pauseBack', 'assets/PauseBackground.png');
 
+		this.load.image('clock', 'assets/Clock.png');
+		this.load.image('clock_h', 'assets/Clock_h.png');
+		this.load.image('clock_m', 'assets/Clock_m.png');
+
 		// load spritesheets		
 		this.load.spritesheet('startButton', 'assets/StartButton.png', 200, 100);
 
