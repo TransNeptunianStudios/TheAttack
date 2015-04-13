@@ -38,6 +38,10 @@ PlayerInfo.prototype.isGameOver = function () {
 	return this.gameOver;
 }
 
+PlayerInfo.prototype.gameOver = function () {
+	this.state.start('GameOver', true, false, this.worldInfo);
+}
+
 PlayerInfo.prototype.debug = function (clear) {
 	if (clear)
 		console.clear();

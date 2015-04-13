@@ -25,7 +25,9 @@ AttackGame.Preloader.prototype = {
 		this.load.image('clock_m', 'assets/Clock_m.png');
 
 		// load spritesheets		
-		this.load.spritesheet('startButton', 'assets/StartButton.png', 150, 75);
+		this.load.spritesheet('startButton', 'assets/StartButton.png', 100, 40);
+		this.load.spritesheet('resumeButton', 'assets/ResumeButton.png', 100, 40);
+		this.load.spritesheet('saveButton', 'assets/SaveButton.png', 100, 40);
 
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg
