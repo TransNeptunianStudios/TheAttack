@@ -6,6 +6,9 @@ AttackGame.GameOver.prototype = {
 		this.worldInfo = worldInfo;
 	},
 	create: function () {
+		localStorage.removeItem("PlayerSave");
+		localStorage.removeItem("WorldSave");
+
 		var background = this.add.sprite(0, 0, 'gameOverScreen');
 
 		this.scoreText = this.game.add.text(
@@ -21,7 +24,7 @@ AttackGame.GameOver.prototype = {
 		this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(this.startGame, this);
 	},
 	getSurivalTimeString: function () {
-		var time = this.worldInfo.timeSinceAttack();
+		var time = new Date(Math.abs(this.worldInfo.time - this.worldInfo.attackStart));
 		var line = "You survived for ";
 
 		var days = Math.floor(time.getTime() / 1000 / 60 / 60 / 24);

@@ -1,6 +1,8 @@
-PauseMenu = function (game) {
+PauseMenu = function (game, player, world) {
 	Phaser.Group.call(this, game);
 	this.game = game;
+	this.playerInfo = player;
+	this.worldInfo = world;
 
 	game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(
 		this.togglePause, this);
@@ -34,5 +36,8 @@ PauseMenu.prototype.togglePause = function () {
 }
 
 PauseMenu.prototype.saveGame = function () {
+	localStorage["PlayerSave"] = JSON.stringify(this.playerInfo);
+	localStorage["WorldSave"] = JSON.stringify(this.worldInfo);
+
 	this.togglePause();
 }

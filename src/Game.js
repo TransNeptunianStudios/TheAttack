@@ -1,16 +1,17 @@
 AttackGame.Game = function (game) {};
 
 AttackGame.Game.prototype = {
+	init: function (playerInfo, worldInfo) {
+		this.playerInfo = playerInfo;
+		this.worldInfo = worldInfo;
+
+		// Is..is this how you do it?
+		this.worldInfo.update = WorldInfo.prototype.update;
+		this.playerInfo.update = PlayerInfo.prototype.update;
+	},
 	create: function () {
-
-		// Create world info
-		this.worldInfo = new WorldInfo(this.game);
-
-		// Create player info
-		this.playerInfo = new PlayerInfo(this.game, this.worldInfo);
-
 		// Pause menu
-		this.pauseMenu = new PauseMenu(this.game);
+		this.pauseMenu = new PauseMenu(this.game, this.playerInfo, this.worldInfo);
 		this.game.add.existing(this.pauseMenu);
 
 		// Create room
@@ -25,8 +26,16 @@ AttackGame.Game.prototype = {
 	update: function () {
 		if (!this.pauseMenu.pauseOn) {
 			this.worldInfo.update(this.game.time.elapsed);
+			var simDt = this.worldInfo.update(this.game.time.elapsed);
+
 			this.clock.setTime(this.worldInfo.time);
-			this.playerInfo.update();
+			this.playerInfo.update(simDt);
+
+			if (this.playerInfo.gameOver)
+				this.gameOVer();
 		}
 	},
+	gameOVer: function () {
+		this.state.start('GameOver', true, false, this.worldInfo);
+	}
 };
