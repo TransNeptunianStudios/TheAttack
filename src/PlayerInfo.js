@@ -13,7 +13,7 @@ PlayerInfo.prototype.update = function (dt) {
 
 	this.sleepy += 1.0 * perHour;
 	this.hunger += 1.5 * perHour;
-	this.thirst += 2.5 * perHour;
+	this.thirst += 2.8 * perHour;
 
 	if (this.hunger >= 100.0) this.health -= 1.0 * perHour;
 	if (this.thirst >= 100.0) this.health -= 2.0 * perHour;

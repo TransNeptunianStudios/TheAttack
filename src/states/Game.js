@@ -7,8 +7,8 @@ AttackGame.Game.prototype = {
 	},
 	create: function () {
 		// Pause menu
-		this.pauseMenu = new PauseMenu(this.game, this.playerInfo, this.worldInfo);
-		this.game.add.existing(this.pauseMenu);
+		this.settingsView = new SettingsView(this.game, this.playerInfo, this.worldInfo);
+		this.game.add.existing(this.settingsView);
 
 		// Create room
 		this.add.sprite(0, 0, 'emptyRoom');
@@ -18,9 +18,12 @@ AttackGame.Game.prototype = {
 		//Clock
 		this.clock = new Clock(this.game, this.worldInfo.time);
 		this.game.add.existing(this.clock);
+
+		this.hud = new HUD(this.game, this.settingsView);
+		this.game.add.existing(this.hud);
 	},
 	update: function () {
-		if (!this.pauseMenu.pauseOn) {
+		if (!this.settingsView.pauseOn) {
 			this.worldInfo.update(this.game.time.elapsed);
 			var simDt = this.worldInfo.update(this.game.time.elapsed);
 

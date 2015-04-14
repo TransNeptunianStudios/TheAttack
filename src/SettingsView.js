@@ -1,12 +1,8 @@
-PauseMenu = function (game, player, world) {
+SettingsView = function (game, player, world) {
 	Phaser.Group.call(this, game);
 	this.game = game;
 	this.playerInfo = player;
 	this.worldInfo = world;
-
-	game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(
-		this.togglePause, this);
-
 	this.pauseOn = false;
 
 	var base = this.create(game.width / 2, game.height / 2, 'pauseBack');
@@ -20,22 +16,21 @@ PauseMenu = function (game, player, world) {
 		this, 1, 0, 2);
 	saveButton.anchor.setTo(0.5);
 	this.add(saveButton);
-
 };
 
-PauseMenu.prototype = Object.create(Phaser.Group.prototype);
-PauseMenu.prototype.constructor = PauseMenu;
+SettingsView.prototype = Object.create(Phaser.Group.prototype);
+SettingsView.prototype.constructor = SettingsView;
 
-PauseMenu.prototype.togglePause = function () {
-	this.pauseOn = !this.pauseOn;
-	if (this.pauseOn) {
-		this.visible = true;
-		this.game.world.bringToTop(this);
-	} else
-		this.visible = false;
+SettingsView.prototype.show = function () {
+	this.pauseOn = true;
+	this.visible = true;
+	this.game.world.bringToTop(this);
 }
-
-PauseMenu.prototype.saveGame = function () {
+SettingsView.prototype.hide = function () {
+	this.pauseOn = false;
+	this.visible = false;
+}
+SettingsView.prototype.saveGame = function () {
 	localStorage["PlayerSave"] = JSON.stringify(this.playerInfo);
 	localStorage["WorldSave"] = JSON.stringify(this.worldInfo);
 
