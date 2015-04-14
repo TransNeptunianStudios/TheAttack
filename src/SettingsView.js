@@ -34,5 +34,5 @@ SettingsView.prototype.saveGame = function () {
 	localStorage["PlayerSave"] = JSON.stringify(this.playerInfo);
 	localStorage["WorldSave"] = JSON.stringify(this.worldInfo);
 
-	this.togglePause();
+	this.hide();
 }
