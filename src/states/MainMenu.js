@@ -44,6 +44,10 @@ AttackGame.MainMenu.prototype = {
 		worldInfo.attackStart = new Date(worldInfo.attackStart);
 		worldInfo.time = new Date(worldInfo.time);
 
+		// Is..is this how you do it?
+		worldInfo.update = WorldInfo.prototype.update;
+		playerInfo.update = PlayerInfo.prototype.update;
+
 		this.state.start('Game', true, false,
 			playerInfo,
 			worldInfo);

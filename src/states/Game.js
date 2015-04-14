@@ -4,10 +4,6 @@ AttackGame.Game.prototype = {
 	init: function (playerInfo, worldInfo) {
 		this.playerInfo = playerInfo;
 		this.worldInfo = worldInfo;
-
-		// Is..is this how you do it?
-		this.worldInfo.update = WorldInfo.prototype.update;
-		this.playerInfo.update = PlayerInfo.prototype.update;
 	},
 	create: function () {
 		// Pause menu
