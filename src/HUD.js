@@ -11,9 +11,10 @@ HUD = function (game, playerInfo, worldInfo) {
 	game.add.existing(this.worldInfoView);
 	game.add.existing(this.settingsView);
 
-	this.currentMenu = null;
-
 	this.createHUD(game);
+	this.createHotKeys(game);
+
+	//game.input.onDown.add(this.deselect, this);
 };
 
 HUD.prototype = Object.create(Phaser.Group.prototype);
@@ -45,16 +46,9 @@ HUD.prototype.createHUD = function (game) {
 	this.settingsButton.view = this.settingsView;
 	this.add(this.settingsButton);
 
-	game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(
-		this.toggle, this.settingsButton);
 }
 
-HUD.prototype.toggle = function (button) {
-
-	var turnOff = false;
-	if (button.view.visible)
-		turnOff = true;
-
+HUD.prototype.deselect = function (mouse) {
 	// hide all
 	this.playerInfoView.hide();
 	this.homeInfoView.hide();
@@ -65,11 +59,38 @@ HUD.prototype.toggle = function (button) {
 	this.homeButton.frame = 0;
 	this.worldButton.frame = 0;
 	this.settingsButton.frame = 0;
+}
+
+HUD.prototype.toggle = function (button) {
+
+	var turnOff = false;
+	if (button.view.visible)
+		turnOff = true;
+
+	this.deselect();
 
 	if (!turnOff) {
 		button.view.show();
 		button.frame = 1;
 	}
+}
+
+HUD.prototype.createHotKeys = function (game) {
+	/*var player = game.input.keyboard.addKey(Phaser.Keyboard.P);
+	player.button = this.playerButton;
+	player.onDown.add(this.toggle, this.button);
+
+	var home = game.input.keyboard.addKey(Phaser.Keyboard.H);
+	home.button = this.homeButton;
+	home.onDown.add(this.toggle, this.button);
+
+	var world = game.input.keyboard.addKey(Phaser.Keyboard.W);
+	world.button = this.worldButton;
+	world.onDown.add(this.toggle, this.button);
+
+	var settings = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+	settings.button = this.settingsButton;
+	settings.onDown.add(this.toggle, this.button);*/
 }
 
 
