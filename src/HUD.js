@@ -1,86 +1,78 @@
-HUD = function (game, settingsView) {
+HUD = function (game, playerInfo, worldInfo) {
 	Phaser.Group.call(this, game);
-	this.settingsView = settingsView;
+
+	this.playerInfoView = new PlayerInfoView(game, playerInfo);
+	this.homeInfoView = new HomeInfoView(game, null);
+	this.worldInfoView = new WorldInfoView(game, playerInfo);
+	this.settingsView = new SettingsView(game, playerInfo, worldInfo);
+
+	game.add.existing(this.playerInfoView);
+	game.add.existing(this.homeInfoView);
+	game.add.existing(this.worldInfoView);
+	game.add.existing(this.settingsView);
 
 	this.currentMenu = null;
 
-	this.createUpperRightHUD(game);
-	this.createMainHUD(game);
+	this.createHUD(game);
 };
 
 HUD.prototype = Object.create(Phaser.Group.prototype);
 HUD.prototype.constructor = HUD;
 
-HUD.prototype.createUpperRightHUD = function (game) {
-	var graphics = this.game.add.graphics(0, 0);
-	graphics.lineStyle(2, 0x000000, 1);
-	graphics.beginFill(0xAAAAAA, 1);
-	graphics.drawRoundedRect(
-		this.game.width - 50, -10, 70, 60, 10);
-	graphics.endFill();
-	this.add(graphics);
 
-	var settingsButton = game.add.button(AttackGame.WIDTH - 45,
-		5,
-		'settingsSymbol',
-		this.toggleSettings,
-		this, 0, 0, 0);
-	this.add(settingsButton);
+HUD.prototype.createHUD = function (game) {
+	this.playerButton = game.add.button((AttackGame.WIDTH / 2) - 100,
+		this.game.height - 45, 'playerSymbol',
+		this.toggle, this);
+	this.playerButton.view = this.playerInfoView;
+	this.add(this.playerButton);
+
+	this.homeButton = game.add.button((AttackGame.WIDTH / 2) - 50,
+		this.game.height - 45, 'homeSymbol',
+		this.toggle, this);
+	this.homeButton.view = this.homeInfoView;
+	this.add(this.homeButton);
+
+	this.worldButton = game.add.button((AttackGame.WIDTH / 2),
+		this.game.height - 45, 'worldSymbol',
+		this.toggle, this);
+	this.worldButton.view = this.worldInfoView;
+	this.add(this.worldButton);
+
+	this.settingsButton = game.add.button((AttackGame.WIDTH / 2) + 50,
+		this.game.height - 45, 'settingsSymbol',
+		this.toggle, this);
+	this.settingsButton.view = this.settingsView;
+	this.add(this.settingsButton);
 
 	game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(
-		this.toggleSettings, this);
-};
+		this.toggle, this.settingsButton);
+}
 
-HUD.prototype.createMainHUD = function (game) {
-	var graphics = this.game.add.graphics(0, 0);
-	graphics.lineStyle(2, 0x000000, 1);
-	graphics.beginFill(0xAAAAAA, 1);
-	graphics.drawRoundedRect(
-		(this.game.width / 2) - 100, this.game.height - 50, 200, 60, 10);
-	graphics.endFill();
-	this.add(graphics);
+HUD.prototype.toggle = function (button) {
 
-	var playerButton = game.add.button((AttackGame.WIDTH / 2) - 90,
-		this.game.height - 45,
-		'playerSymbol',
-		this.toggleSettings,
-		this, 0, 0, 0);
-	this.add(playerButton);
+	var turnOff = false;
+	if (button.view.visible)
+		turnOff = true;
 
-	var homeButton = game.add.button((AttackGame.WIDTH / 2) - 20,
-		this.game.height - 45,
-		'homeSymbol',
-		this.toggleSettings,
-		this, 0, 0, 0);
-	this.add(homeButton);
+	// hide all
+	this.playerInfoView.hide();
+	this.homeInfoView.hide();
+	this.worldInfoView.hide();
+	this.settingsView.hide();
 
-	var worldButton = game.add.button((AttackGame.WIDTH / 2) + 50,
-		this.game.height - 45,
-		'worldSymbol',
-		this.toggleSettings,
-		this, 0, 0, 0);
-	this.add(worldButton);
+	this.playerButton.frame = 0;
+	this.homeButton.frame = 0;
+	this.worldButton.frame = 0;
+	this.settingsButton.frame = 0;
 
-};
-
-HUD.prototype.toggleSettings = function () {
-	if (this.currentMenu == this.settingsView) {
-		this.settingsView.hide();
-		this.currentMenu = null;
-	} else {
-		this.settingsView.show();
-		this.currentMenu = this.settingsView;
+	if (!turnOff) {
+		button.view.show();
+		button.frame = 1;
 	}
 }
 
-HUD.prototype.showPlayerInfo = function () {
 
-}
-
-HUD.prototype.showHomeInfo = function () {
-
-}
-
-HUD.prototype.showWorldInfo = function () {
-
+HUD.prototype.pauseOn = function () {
+	return this.settingsView.pauseOn;
 }
