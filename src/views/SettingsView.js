@@ -6,7 +6,7 @@ SettingsView = function (game, player, world) {
 	this.pauseOn = false;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 45, 'settingsBack');
+	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
 	base.anchor.setTo(0.5, 1);
 
 	this.saveButton = game.add.button(AttackGame.WIDTH / 2,

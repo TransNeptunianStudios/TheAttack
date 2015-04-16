@@ -15,6 +15,7 @@ HUD = function (game, playerInfo, worldInfo) {
 	this.createHotKeys(game);
 
 	game.input.onDown.add(this.checkClick, this);
+	game.onPause.add(this.lostFocus, this);
 };
 
 HUD.prototype = Object.create(Phaser.Group.prototype);
@@ -46,6 +47,10 @@ HUD.prototype.createHUD = function (game) {
 	this.settingsButton.view = this.settingsView;
 	this.add(this.settingsButton);
 
+}
+
+HUD.prototype.lostFocus = function () {
+	this.toggle(this.settingsButton);
 }
 
 HUD.prototype.checkClick = function (mouse) {

@@ -19,10 +19,7 @@ AttackGame.Preloader.prototype = {
 		this.load.image('emptyRoom', 'assets/EmptyRoom.png');
 		this.load.image('door', 'assets/Door.png');
 
-		this.load.image('playerInfoBack', 'assets/PlayerInfoBack.png');
-		this.load.image('homeInfoBack', 'assets/HomeInfoBack.png');
-		this.load.image('worldInfoBack', 'assets/WorldInfoBack.png');
-		this.load.image('settingsBack', 'assets/SettingsBack.png');
+		this.load.image('InfoBack', 'assets/InfoBack.png');
 
 		this.load.image('clock', 'assets/Clock.png');
 		this.load.image('clock_h', 'assets/Clock_h.png');

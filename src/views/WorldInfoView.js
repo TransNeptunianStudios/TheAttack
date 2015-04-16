@@ -4,7 +4,7 @@ WorldInfoView = function (game, world) {
 	this.worldInfo = world;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 45, 'worldInfoBack');
+	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
 	base.anchor.setTo(0.5, 1);
 };
 

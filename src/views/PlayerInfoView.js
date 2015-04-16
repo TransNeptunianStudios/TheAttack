@@ -4,7 +4,7 @@ PlayerInfoView = function (game, player) {
 	this.playerInfo = player;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 45, 'playerInfoBack');
+	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
 	base.anchor.setTo(0.5, 1);
 };
 

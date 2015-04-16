@@ -4,7 +4,7 @@ HomeInfoView = function (game, home) {
 	this.homeInfo = home;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 45, 'homeInfoBack');
+	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
 	base.anchor.setTo(0.5, 1);
 };
 

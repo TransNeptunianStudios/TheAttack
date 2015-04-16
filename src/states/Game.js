@@ -20,16 +20,16 @@ AttackGame.Game.prototype = {
 		this.game.add.existing(this.hud);
 	},
 	update: function () {
-		if (!this.hud.pauseOn()) {
-			this.worldInfo.update(this.game.time.elapsed);
-			var simDt = this.worldInfo.update(this.game.time.elapsed);
+		var dt = this.game.time.elapsed;
+		if (this.hud.pauseOn())
+			dt = 0;
 
-			this.clock.setTime(this.worldInfo.time);
-			this.playerInfo.update(simDt);
+		var simDt = this.worldInfo.update(dt);
+		this.clock.setTime(this.worldInfo.time);
+		this.playerInfo.update(simDt);
 
-			if (this.playerInfo.gameOver)
-				this.gameOVer();
-		}
+		if (this.playerInfo.gameOver)
+			this.gameOVer();
 	},
 	gameOVer: function () {
 		this.state.start('GameOver', true, false, this.worldInfo);

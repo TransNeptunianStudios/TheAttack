@@ -16,7 +16,7 @@ AttackGame.Boot.prototype = {
 		this.stage.smoothed = false;
 
 		// run in background
-		this.game.stage.disableVisibilityChange = true;
+		this.game.stage.disableVisibilityChange = false;
 
 		// start the Preloader state
 		this.state.start('Preloader');
