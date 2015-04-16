@@ -14,7 +14,7 @@ HUD = function (game, playerInfo, worldInfo) {
 	this.createHUD(game);
 	this.createHotKeys(game);
 
-	//game.input.onDown.add(this.deselect, this);
+	game.input.onDown.add(this.checkClick, this);
 };
 
 HUD.prototype = Object.create(Phaser.Group.prototype);
@@ -48,7 +48,15 @@ HUD.prototype.createHUD = function (game) {
 
 }
 
-HUD.prototype.deselect = function (mouse) {
+HUD.prototype.checkClick = function (mouse) {
+	if (!this.getLocalBounds().contains(mouse.x, mouse.y) &&
+		!this.playerInfoView.getLocalBounds().contains(mouse.x, mouse.y) &&
+		!this.homeInfoView.getLocalBounds().contains(mouse.x, mouse.y) &&
+		!this.worldInfoView.getLocalBounds().contains(mouse.x, mouse.y) &&
+		!this.settingsView.getLocalBounds().contains(mouse.x, mouse.y))
+		this.deselect();
+}
+HUD.prototype.deselect = function () {
 	// hide all
 	this.playerInfoView.hide();
 	this.homeInfoView.hide();

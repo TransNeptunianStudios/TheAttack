@@ -9,13 +9,13 @@ SettingsView = function (game, player, world) {
 	var base = this.create(game.width / 2, game.height - 45, 'settingsBack');
 	base.anchor.setTo(0.5, 1);
 
-	var saveButton = game.add.button(AttackGame.WIDTH / 2,
+	this.saveButton = game.add.button(AttackGame.WIDTH / 2,
 		AttackGame.HEIGHT - 100,
 		'saveButton',
 		this.saveGame,
 		this, 1, 0, 2);
-	saveButton.anchor.setTo(0.5);
-	this.add(saveButton);
+	this.saveButton.anchor.setTo(0.5);
+	this.add(this.saveButton);
 };
 
 SettingsView.prototype = Object.create(Phaser.Group.prototype);
@@ -24,6 +24,7 @@ SettingsView.prototype.constructor = SettingsView;
 SettingsView.prototype.show = function () {
 	this.pauseOn = true;
 	this.visible = true;
+	this.saveButton.visible = true;
 	this.game.world.bringToTop(this);
 }
 SettingsView.prototype.hide = function () {
@@ -33,4 +34,5 @@ SettingsView.prototype.hide = function () {
 SettingsView.prototype.saveGame = function () {
 	localStorage["PlayerSave"] = JSON.stringify(this.playerInfo);
 	localStorage["WorldSave"] = JSON.stringify(this.worldInfo);
+	this.saveButton.visible = false;
 }
