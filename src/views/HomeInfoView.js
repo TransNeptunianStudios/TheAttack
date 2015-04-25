@@ -13,7 +13,6 @@ HomeInfoView.prototype.constructor = HomeInfoView;
 
 HomeInfoView.prototype.show = function () {
 	this.visible = true;
-	this.game.world.bringToTop(this);
 }
 
 HomeInfoView.prototype.hide = function () {

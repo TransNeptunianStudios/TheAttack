@@ -25,7 +25,7 @@ SettingsView.prototype.show = function () {
 	this.pauseOn = true;
 	this.visible = true;
 	this.saveButton.visible = true;
-	this.game.world.bringToTop(this);
+	//this.game.world.bringToTop(this);
 }
 SettingsView.prototype.hide = function () {
 	this.pauseOn = false;

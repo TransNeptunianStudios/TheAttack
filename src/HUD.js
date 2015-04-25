@@ -3,8 +3,8 @@ HUD = function (game, playerInfo, worldInfo) {
 
 	this.playerInfoView = new PlayerInfoView(game, playerInfo);
 	this.homeInfoView = new HomeInfoView(game, null);
-	this.worldInfoView = new WorldInfoView(game, playerInfo);
-	this.settingsView = new SettingsView(game, playerInfo, worldInfo);
+	this.worldInfoView = new WorldInfoView(game, worldInfo);
+	this.settingsView = new SettingsView(game, playerInfo, null);
 
 	game.add.existing(this.playerInfoView);
 	game.add.existing(this.homeInfoView);
@@ -89,23 +89,19 @@ HUD.prototype.toggle = function (button) {
 }
 
 HUD.prototype.createHotKeys = function (game) {
-	/*var player = game.input.keyboard.addKey(Phaser.Keyboard.P);
-	player.button = this.playerButton;
-	player.onDown.add(this.toggle, this.button);
-
-	var home = game.input.keyboard.addKey(Phaser.Keyboard.H);
-	home.button = this.homeButton;
-	home.onDown.add(this.toggle, this.button);
-
-	var world = game.input.keyboard.addKey(Phaser.Keyboard.W);
-	world.button = this.worldButton;
-	world.onDown.add(this.toggle, this.button);
-
-	var settings = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
-	settings.button = this.settingsButton;
-	settings.onDown.add(this.toggle, this.button);*/
+	// TODO
 }
 
+HUD.prototype.update = function () {
+	if (this.playerInfoView.visible)
+		this.playerInfoView.update();
+	else if (this.homeInfoView.visible)
+		this.homeInfoView.update();
+	else if (this.worldInfoView.visible)
+		this.worldInfoView.update();
+	else if (this.settingsView.visible)
+		this.settingsView.update();
+}
 
 HUD.prototype.pauseOn = function () {
 	return this.settingsView.pauseOn;

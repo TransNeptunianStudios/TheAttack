@@ -28,10 +28,12 @@ AttackGame.Game.prototype = {
 		this.clock.setTime(this.worldInfo.time);
 		this.playerInfo.update(simDt);
 
+		this.hud.update();
+
 		if (this.playerInfo.gameOver)
 			this.gameOVer();
 	},
 	gameOVer: function () {
-		this.state.start('GameOver', true, false, this.worldInfo);
+		this.state.start('GameOver', true, false, this.hud.worldInfoView);
 	}
 };

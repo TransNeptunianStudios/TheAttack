@@ -30,6 +30,12 @@ AttackGame.Preloader.prototype = {
 		this.load.image('worldSymbol', 'assets/WorldSymbol.png');
 		this.load.image('settingsSymbol', 'assets/SettingsSymbol.png');
 
+		this.load.image('statusIndicator', 'assets/StatusIndicator.png');
+		this.load.image('waterSymbol', 'assets/WaterSymbol.png');
+		this.load.image('healthSymbol', 'assets/HealthSymbol.png');
+		this.load.image('foodSymbol', 'assets/FoodSymbol.png');
+		this.load.image('sleepSymbol', 'assets/SleepSymbol.png');
+
 		// load spritesheets		
 		this.load.spritesheet('startButton', 'assets/StartButton.png', 100, 40);
 		this.load.spritesheet('resumeButton', 'assets/ResumeButton.png', 100, 40);
@@ -39,6 +45,8 @@ AttackGame.Preloader.prototype = {
 		this.load.spritesheet('homeSymbol', 'assets/HomeSymbol.png', 50, 45);
 		this.load.spritesheet('worldSymbol', 'assets/WorldSymbol.png', 50, 45);
 		this.load.spritesheet('settingsSymbol', 'assets/SettingsSymbol.png', 50, 45);
+
+
 
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg
