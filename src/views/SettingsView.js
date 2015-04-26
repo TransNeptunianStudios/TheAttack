@@ -1,20 +1,20 @@
-SettingsView = function (game, player, world) {
+SettingsView = function (game, player, world, x, y) {
 	Phaser.Group.call(this, game);
+	this.x = x;
+	this.y = y;
+
 	this.game = game;
 	this.playerInfo = player;
 	this.worldInfo = world;
 	this.pauseOn = false;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
-	base.anchor.setTo(0.5, 1);
+	var base = this.create(0, 0, 'InfoBack');
 
-	this.saveButton = game.add.button(AttackGame.WIDTH / 2,
-		AttackGame.HEIGHT - 100,
+	this.saveButton = game.add.button(10, 10,
 		'saveButton',
 		this.saveGame,
 		this, 1, 0, 2);
-	this.saveButton.anchor.setTo(0.5);
 	this.add(this.saveButton);
 };
 

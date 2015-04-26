@@ -1,10 +1,15 @@
 HUD = function (game, playerInfo, worldInfo) {
 	Phaser.Group.call(this, game);
 
-	this.playerInfoView = new PlayerInfoView(game, playerInfo);
-	this.homeInfoView = new HomeInfoView(game, null);
-	this.worldInfoView = new WorldInfoView(game, worldInfo);
-	this.settingsView = new SettingsView(game, playerInfo, null);
+	this.viewPos = {
+		x: 120,
+		y: 66
+	}
+
+	this.playerInfoView = new PlayerInfoView(game, playerInfo, this.viewPos.x, this.viewPos.y);
+	this.homeInfoView = new HomeInfoView(game, null, this.viewPos.x, this.viewPos.y);
+	this.worldInfoView = new WorldInfoView(game, worldInfo, this.viewPos.x, this.viewPos.y);
+	this.settingsView = new SettingsView(game, playerInfo, null, this.viewPos.x, this.viewPos.y);
 
 	game.add.existing(this.playerInfoView);
 	game.add.existing(this.homeInfoView);
@@ -54,11 +59,13 @@ HUD.prototype.lostFocus = function () {
 }
 
 HUD.prototype.checkClick = function (mouse) {
-	if (!this.getLocalBounds().contains(mouse.x, mouse.y) &&
-		!this.playerInfoView.getLocalBounds().contains(mouse.x, mouse.y) &&
-		!this.homeInfoView.getLocalBounds().contains(mouse.x, mouse.y) &&
-		!this.worldInfoView.getLocalBounds().contains(mouse.x, mouse.y) &&
-		!this.settingsView.getLocalBounds().contains(mouse.x, mouse.y))
+	var x = mouse.x - this.viewPos.x;
+	var y = mouse.y - this.viewPos.y;
+	if (!this.getLocalBounds().contains(x, y) &&
+		!this.playerInfoView.getLocalBounds().contains(x, y) &&
+		!this.homeInfoView.getLocalBounds().contains(x, y) &&
+		!this.worldInfoView.getLocalBounds().contains(x, y) &&
+		!this.settingsView.getLocalBounds().contains(x, y))
 		this.deselect();
 }
 HUD.prototype.deselect = function () {

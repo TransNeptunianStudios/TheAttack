@@ -1,18 +1,19 @@
-WorldInfoView = function (game, world) {
+WorldInfoView = function (game, world, x, y) {
 	Phaser.Group.call(this, game);
+	this.x = x;
+	this.y = y;
 	this.game = game;
 	this.worldInfo = world;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
-	base.anchor.setTo(0.5, 1);
+	var base = this.create(0, 0, 'InfoBack');
 
 	var timeSinceAttackStyle = {
 		font: "25px Arial",
 		fill: "#550044",
 		align: "left"
 	};
-	this.timeSinceAttack = this.game.add.text(this.game.world.centerX / 2, 100, "", timeSinceAttackStyle);
+	this.timeSinceAttack = this.game.add.text(10, 10, "", timeSinceAttackStyle);
 	this.add(this.timeSinceAttack);
 };
 

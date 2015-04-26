@@ -1,16 +1,19 @@
-PlayerInfoView = function (game, player) {
+PlayerInfoView = function (game, player, x, y) {
 	Phaser.Group.call(this, game);
+
+	this.x = x;
+	this.y = y;
+
 	this.game = game;
 	this.playerInfo = player;
 	this.visible = false;
 
-	var base = this.create(game.width / 2, game.height - 44, 'InfoBack');
-	base.anchor.setTo(0.5, 1);
+	var base = this.create(0, 0, 'InfoBack');
 
-	this.healthIndicator = new StatusIndicator(game, 130, 80, 'healthSymbol', 0xFF3300, 100.0);
-	this.waterIndicator = new StatusIndicator(game, 130, 120, 'waterSymbol', 0xFFFF0B, 100.0);
-	this.foodIndicator = new StatusIndicator(game, 130, 160, 'foodSymbol', 0xFF00FF, 100.0);
-	this.sleepIndicator = new StatusIndicator(game, 130, 200, 'sleepSymbol', 0xCCFFFF, 100.0);
+	this.healthIndicator = new StatusIndicator(game, 10, 10, 'healthSymbol', 0xFF3300, 100.0);
+	this.waterIndicator = new StatusIndicator(game, 10, 50, 'waterSymbol', 0xFFFF0B, 100.0);
+	this.foodIndicator = new StatusIndicator(game, 10, 90, 'foodSymbol', 0xFF00FF, 100.0);
+	this.sleepIndicator = new StatusIndicator(game, 10, 130, 'sleepSymbol', 0xCCFFFF, 100.0);
 
 	this.add(this.healthIndicator);
 	this.add(this.waterIndicator);

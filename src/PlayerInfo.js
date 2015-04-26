@@ -1,11 +1,11 @@
 PlayerInfo = function () {
 	// fill up
 	this.gameOver = false;
-	this.damage = 99.0;
+	this.damage = 70.0;
 
-	this.sleepy = 0.0; // 0 is "not sleepy at all"
-	this.hunger = 0.0; // 0 is "not hungry at all"
-	this.thirst = 90.0; // 0 is "not thirsty at all"
+	this.sleepy = 10.0; // 0 is "not sleepy at all"
+	this.hunger = 30.0; // 0 is "not hungry at all"
+	this.thirst = 50.0; // 0 is "not thirsty at all"
 }
 
 PlayerInfo.prototype.update = function (dt) {

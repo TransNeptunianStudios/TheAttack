@@ -1,19 +1,14 @@
 AttackGame.Game = function (game) {};
 
 AttackGame.Game.prototype = {
-	init: function (playerInfo, worldInfo) {
+	init: function (playerInfo, homeInfoInfo, worldInfo) {
 		this.playerInfo = playerInfo;
+		this.homeInfo = homeInfoInfo
 		this.worldInfo = worldInfo;
 	},
 	create: function () {
 		// Create room
-		this.add.sprite(0, 0, 'emptyRoom');
-		this.frontDoor = new FrontDoor(this.game);
-		this.game.add.existing(this.frontDoor);
-
-		// Clock
-		this.clock = new Clock(this.game, this.worldInfo.time);
-		this.game.add.existing(this.clock);
+		this.home = new Home(this.game, this.homeInfo, this.worldInfo.time);
 
 		// HUD
 		this.hud = new HUD(this.game, this.playerInfo, this.worldInfo);
@@ -25,8 +20,11 @@ AttackGame.Game.prototype = {
 			dt = 0;
 
 		var simDt = this.worldInfo.update(dt);
-		this.clock.setTime(this.worldInfo.time);
+
 		this.playerInfo.update(simDt);
+		this.homeInfo.update(simDt);
+
+		this.home.update(simDt);
 
 		this.hud.update();
 

@@ -27,7 +27,7 @@ AttackGame.MainMenu.prototype = {
 			this, 1, 0, 2);
 		startButton.anchor.setTo(0.5);
 
-		var text = "Version: 0.1 Alfa";
+		var text = "Version: 0.2 Alfa";
 		var style = {
 			font: "20px Arial",
 			fill: "#000000",
@@ -38,6 +38,7 @@ AttackGame.MainMenu.prototype = {
 	},
 	resumeGame: function () {
 		var playerInfo = JSON.parse(localStorage["PlayerSave"]);
+		var homeInfo = JSON.parse(localStorage["HomeSave"]);
 		var worldInfo = JSON.parse(localStorage["WorldSave"]);
 
 		// Dates doesnt work to well in json.
@@ -46,16 +47,19 @@ AttackGame.MainMenu.prototype = {
 
 		// Is..is this how you do it?
 		worldInfo.update = WorldInfo.prototype.update;
+		homeInfo.update = HomeInfo.prototype.update;
 		playerInfo.update = PlayerInfo.prototype.update;
 
 		this.state.start('Game', true, false,
 			playerInfo,
+			homeInfo,
 			worldInfo);
 	},
 	startGame: function () {
 		var timeMulti = 2000;
 		this.state.start('Game', true, false,
 			new PlayerInfo(),
+			new HomeInfo(),
 			new WorldInfo(timeMulti));
 	}
 };

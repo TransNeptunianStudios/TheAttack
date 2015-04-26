@@ -13,7 +13,7 @@ StatusIndicator = function (game, x, y, symbolImage, color, max) {
 
 	this.create(0, 0, 'statusIndicator');
 
-	var symbol = this.create(5, 5, symbolImage);
+	var symbol = this.create(6, 5, symbolImage);
 };
 
 StatusIndicator.prototype = Object.create(Phaser.Group.prototype);
